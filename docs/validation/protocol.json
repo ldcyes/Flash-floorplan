@@ -1,0 +1,64 @@
+{
+  "suite_version": 2,
+  "mode": "full",
+  "families": [
+    "crossbar",
+    "benes",
+    "router"
+  ],
+  "configs": [
+    [
+      4,
+      8
+    ],
+    [
+      8,
+      8
+    ],
+    [
+      4,
+      16
+    ],
+    [
+      8,
+      16
+    ],
+    [
+      16,
+      8
+    ],
+    [
+      16,
+      16
+    ]
+  ],
+  "calibration": [
+    [
+      4,
+      8
+    ],
+    [
+      8,
+      8
+    ]
+  ],
+  "routing_budgets": [
+    [
+      "nominal",
+      "metal2-metal6",
+      0.3
+    ],
+    [
+      "constrained",
+      "metal2-metal4",
+      0.8
+    ]
+  ],
+  "threads": 1,
+  "clock_period_ns": 5,
+  "timing_scope": "pre-CTS; no signoff timing or power",
+  "area_scope": "mapped standard-cell area, not die area",
+  "hotspot_threshold": 0.8,
+  "reference": "Nangate45 typical; not foundry silicon",
+  "resource_baseline": "incremental start/end without dirty nets; no routed signals; subtract baseline occupancy from capacity and routed usage"
+}

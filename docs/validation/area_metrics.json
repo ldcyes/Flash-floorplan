@@ -1,0 +1,146 @@
+[
+  {
+    "case": "crossbar_n4_w8",
+    "family": "crossbar",
+    "split": "calibration",
+    "actual_um2": 323.45599999999945,
+    "predicted_um2": 282.11199999999945,
+    "ape_pct": 12.781954887218065
+  },
+  {
+    "case": "crossbar_n8_w8",
+    "family": "crossbar",
+    "split": "calibration",
+    "actual_um2": 1123.5839999999973,
+    "predicted_um2": 1316.522666666664,
+    "ape_pct": 17.171717171717216
+  },
+  {
+    "case": "crossbar_n4_w16",
+    "family": "crossbar",
+    "split": "test",
+    "actual_um2": 646.9120000000019,
+    "predicted_um2": 564.2239999999989,
+    "ape_pct": 12.781954887218463
+  },
+  {
+    "case": "crossbar_n8_w16",
+    "family": "crossbar",
+    "split": "test",
+    "actual_um2": 2247.168000000013,
+    "predicted_um2": 2633.045333333328,
+    "ape_pct": 17.171717171716267
+  },
+  {
+    "case": "crossbar_n16_w8",
+    "family": "crossbar",
+    "split": "test",
+    "actual_um2": 3790.4999999999204,
+    "predicted_um2": 5642.239999999989,
+    "ape_pct": 48.85213032581736
+  },
+  {
+    "case": "crossbar_n16_w16",
+    "family": "crossbar",
+    "split": "test",
+    "actual_um2": 7541.897999999843,
+    "predicted_um2": 11284.479999999978,
+    "ape_pct": 49.62387452071366
+  },
+  {
+    "case": "benes_n4_w8",
+    "family": "benes",
+    "split": "calibration",
+    "actual_um2": 323.45599999999945,
+    "predicted_um2": 294.5152000000004,
+    "ape_pct": 8.947368421052355
+  },
+  {
+    "case": "benes_n8_w8",
+    "family": "benes",
+    "split": "calibration",
+    "actual_um2": 885.2480000000043,
+    "predicted_um2": 981.7173333333346,
+    "ape_pct": 10.89743589743551
+  },
+  {
+    "case": "benes_n4_w16",
+    "family": "benes",
+    "split": "test",
+    "actual_um2": 646.9120000000019,
+    "predicted_um2": 589.0304000000008,
+    "ape_pct": 8.947368421052772
+  },
+  {
+    "case": "benes_n8_w16",
+    "family": "benes",
+    "split": "test",
+    "actual_um2": 1770.4959999999924,
+    "predicted_um2": 1963.4346666666693,
+    "ape_pct": 10.897435897436523
+  },
+  {
+    "case": "benes_n16_w8",
+    "family": "benes",
+    "split": "test",
+    "actual_um2": 2247.168000000013,
+    "predicted_um2": 2748.808533333337,
+    "ape_pct": 22.323232323231785
+  },
+  {
+    "case": "benes_n16_w16",
+    "family": "benes",
+    "split": "test",
+    "actual_um2": 4494.336000000077,
+    "predicted_um2": 5497.617066666674,
+    "ape_pct": 22.3232323232304
+  },
+  {
+    "case": "router_n4_w8",
+    "family": "router",
+    "split": "calibration",
+    "actual_um2": 2530.989999999998,
+    "predicted_um2": 2597.64962265763,
+    "ape_pct": 2.6337371011988253
+  },
+  {
+    "case": "router_n8_w8",
+    "family": "router",
+    "split": "calibration",
+    "actual_um2": 10748.794000000406,
+    "predicted_um2": 10479.864800687485,
+    "ape_pct": 2.501947653968536
+  },
+  {
+    "case": "router_n4_w16",
+    "family": "router",
+    "split": "test",
+    "actual_um2": 4054.9039999999645,
+    "predicted_um2": 3726.230828377808,
+    "ape_pct": 8.105572206448278
+  },
+  {
+    "case": "router_n8_w16",
+    "family": "router",
+    "split": "test",
+    "actual_um2": 16825.830000001217,
+    "predicted_um2": 15083.455933625159,
+    "ape_pct": 10.355352849612364
+  },
+  {
+    "case": "router_n16_w8",
+    "family": "router",
+    "split": "test",
+    "actual_um2": 72154.89399998332,
+    "predicted_um2": 42097.991822863856,
+    "ape_pct": 41.65608250651219
+  },
+  {
+    "case": "router_n16_w16",
+    "family": "router",
+    "split": "test",
+    "actual_um2": 111178.15799997357,
+    "predicted_um2": 60690.888974728485,
+    "ape_pct": 45.41114004178508
+  }
+]

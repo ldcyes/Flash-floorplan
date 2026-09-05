@@ -1,0 +1,118 @@
+{
+  "status": "pilot-library-specific-not-signoff",
+  "calibration_coefficients": {
+    "crossbar": 2.938666666666661,
+    "benes": 3.0678666666666707,
+    "router": 51009.320032550415
+  },
+  "area": {
+    "crossbar": {
+      "n": 4,
+      "mape_pct": 32.10741922636644,
+      "max_ape_pct": 49.62387452071366
+    },
+    "benes": {
+      "n": 4,
+      "mape_pct": 16.12281724123787,
+      "max_ape_pct": 22.323232323231785
+    },
+    "router": {
+      "n": 4,
+      "mape_pct": 26.382036901089478,
+      "max_ape_pct": 45.41114004178508
+    },
+    "all": {
+      "n": 12,
+      "mape_pct": 24.870757789564596,
+      "max_ape_pct": 49.62387452071366
+    }
+  },
+  "congestion": {
+    "legacy_star_tile/nominal": {
+      "n": 11,
+      "pearson_macro": 0.4905136137711077,
+      "spearman_macro": 0.6912658242193404,
+      "active_pearson_macro": 0.3618693553423789,
+      "hotspot_f1_macro_positive_cases": 0.27233378282146,
+      "positive_cases": 8,
+      "hotspot_f1_micro": 0.7626466575716234,
+      "all_positive_f1_macro": 0.15961369388956115,
+      "median_kernel_ms": 3.168330999999995
+    },
+    "legacy_star_tile/constrained": {
+      "n": 10,
+      "pearson_macro": 0.36324489235000423,
+      "spearman_macro": 0.5519304237764915,
+      "active_pearson_macro": 0.3614796116822583,
+      "hotspot_f1_macro_positive_cases": 0.8765582620330327,
+      "positive_cases": 10,
+      "hotspot_f1_micro": 0.8854379896943602,
+      "all_positive_f1_macro": 0.9765776453379867,
+      "median_kernel_ms": 2.786856
+    },
+    "legacy_star_tile/all": {
+      "n": 21,
+      "pearson_macro": 0.4299094607134394,
+      "spearman_macro": 0.6249156335322694,
+      "active_pearson_macro": 0.3616837631232738,
+      "hotspot_f1_macro_positive_cases": 0.6080140490501115,
+      "positive_cases": 18,
+      "hotspot_f1_micro": 0.8077132321827963,
+      "all_positive_f1_macro": 0.54864414696024,
+      "median_kernel_ms": 3.013942
+    },
+    "mst_union_edge/nominal": {
+      "n": 11,
+      "pearson_macro": 0.8237582979168877,
+      "spearman_macro": 0.8447530090435551,
+      "active_pearson_macro": 0.7435642682478485,
+      "hotspot_f1_macro_positive_cases": 0.37201764527740855,
+      "positive_cases": 8,
+      "hotspot_f1_micro": 0.7964257964257965,
+      "all_positive_f1_macro": 0.15961369388956115,
+      "median_kernel_ms": 9.34974200000002
+    },
+    "mst_union_edge/constrained": {
+      "n": 10,
+      "pearson_macro": 0.6425624668419475,
+      "spearman_macro": 0.6857756099884581,
+      "active_pearson_macro": 0.6414127030825041,
+      "hotspot_f1_macro_positive_cases": 0.8329083105012762,
+      "positive_cases": 10,
+      "hotspot_f1_micro": 0.8462664000390187,
+      "all_positive_f1_macro": 0.9765776453379867,
+      "median_kernel_ms": 9.432582000000004
+    },
+    "mst_union_edge/all": {
+      "n": 21,
+      "pearson_macro": 0.7374745688335829,
+      "spearman_macro": 0.7690494856839851,
+      "active_pearson_macro": 0.6949206657881607,
+      "hotspot_f1_macro_positive_cases": 0.6280680148462239,
+      "positive_cases": 18,
+      "hotspot_f1_micro": 0.8179255207237535,
+      "all_positive_f1_macro": 0.54864414696024,
+      "median_kernel_ms": 9.34974200000002
+    }
+  },
+  "counts": {
+    "requested_cases": 18,
+    "successful_cases": 16,
+    "successful_routes": 33
+  },
+  "protocol": "v6 shape + per-family scalar fit only on 4x8/8x8; held-out widths/radices; post-placement pin adapter; native resources stripped of reserved occupancy; hotspot threshold >=0.8; interior GCells, same mask for both predictors",
+  "runtime": {
+    "synthesis_s": {
+      "median_s": 1.4920815205000224,
+      "sum_s": 431.04868903700003
+    },
+    "placement_s": {
+      "median_s": 0.6153077270000153,
+      "sum_s": 90.62091650400023
+    },
+    "global_route": {
+      "median_s": 1.334,
+      "sum_s": 582.2750000000001
+    }
+  }
+}

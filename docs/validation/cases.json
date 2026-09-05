@@ -1,0 +1,859 @@
+[
+  {
+    "case": "crossbar_n4_w8",
+    "family": "crossbar",
+    "n": 4,
+    "w": 8,
+    "split": "calibration",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.41492643700001963,
+        "global_route_s": 0.08,
+        "extraction_s": 0.31465158899999324,
+        "resource_extraction_s": 0.31469201899997756,
+        "grid": [
+          17,
+          17
+        ],
+        "signal_edge_usage": 1029
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 0.8657252149999977,
+        "global_route_s": 0.554,
+        "extraction_s": 0.3648880229999918,
+        "resource_extraction_s": 0.3146626819999767,
+        "grid": [
+          17,
+          17
+        ],
+        "signal_edge_usage": 1510
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.015868477999987363,
+    "simulation_s": 0.007676640999989104,
+    "synthesis_s": 0.46466760699999554,
+    "synthesis_area_um2": 323.45599999999945,
+    "cells": 128,
+    "die_side_um": 37,
+    "port_bits": 73,
+    "placement_s": 0.31463085000001456,
+    "placed_area_um2": 323.45599999999945
+  },
+  {
+    "case": "crossbar_n8_w8",
+    "family": "crossbar",
+    "n": 8,
+    "w": 8,
+    "split": "calibration",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.4648827470000185,
+        "global_route_s": 0.143,
+        "extraction_s": 0.3648257379999791,
+        "resource_extraction_s": 0.364801693000004,
+        "grid": [
+          28,
+          28
+        ],
+        "signal_edge_usage": 4540
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 3.371474508999995,
+        "global_route_s": 3.057,
+        "extraction_s": 0.3649662210000031,
+        "resource_extraction_s": 0.3648016319999954,
+        "grid": [
+          28,
+          28
+        ],
+        "signal_edge_usage": 5769
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.015812834000001885,
+    "simulation_s": 0.01574223299999744,
+    "synthesis_s": 0.815682914000007,
+    "synthesis_area_um2": 1123.5839999999973,
+    "cells": 512,
+    "die_side_um": 60,
+    "port_bits": 153,
+    "placement_s": 0.41478197600000044,
+    "placed_area_um2": 1123.5839999999973
+  },
+  {
+    "case": "crossbar_n4_w16",
+    "family": "crossbar",
+    "n": 4,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.4149406209999995,
+        "global_route_s": 0.113,
+        "extraction_s": 0.31492179099998907,
+        "resource_extraction_s": 0.31469712899999536,
+        "grid": [
+          22,
+          22
+        ],
+        "signal_edge_usage": 2590
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 1.7679326039999808,
+        "global_route_s": 1.455,
+        "extraction_s": 0.36480473999998253,
+        "resource_extraction_s": 0.3147524930000145,
+        "grid": [
+          22,
+          22
+        ],
+        "signal_edge_usage": 3322
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.015861999000009064,
+    "simulation_s": 0.015739157000012938,
+    "synthesis_s": 0.5650206250000167,
+    "synthesis_area_um2": 646.9120000000019,
+    "cells": 256,
+    "die_side_um": 48,
+    "port_bits": 137,
+    "placement_s": 0.3648345260000099,
+    "placed_area_um2": 646.9120000000019
+  },
+  {
+    "case": "crossbar_n8_w16",
+    "family": "crossbar",
+    "n": 8,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.6154520629999922,
+        "global_route_s": 0.291,
+        "extraction_s": 0.4149066669999968,
+        "resource_extraction_s": 0.41483765099999914,
+        "grid": [
+          38,
+          38
+        ],
+        "signal_edge_usage": 10833
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 8.983134798999998,
+        "global_route_s": 8.662,
+        "extraction_s": 0.4150248239999996,
+        "resource_extraction_s": 0.4149431909999919,
+        "grid": [
+          38,
+          38
+        ],
+        "signal_edge_usage": 12678
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.015860100999987026,
+    "simulation_s": 0.015727454000000307,
+    "synthesis_s": 1.2164183300000104,
+    "synthesis_area_um2": 2247.168000000013,
+    "cells": 1024,
+    "die_side_um": 81,
+    "port_bits": 281,
+    "placement_s": 0.5651637919999928,
+    "placed_area_um2": 2247.168000000013
+  },
+  {
+    "case": "crossbar_n16_w8",
+    "family": "crossbar",
+    "n": 16,
+    "w": 8,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.866169020000001,
+        "global_route_s": 0.441,
+        "extraction_s": 0.4651115609999863,
+        "resource_extraction_s": 0.4650818209999841,
+        "grid": [
+          48,
+          48
+        ],
+        "signal_edge_usage": 22940
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 21.51327745400002,
+        "global_route_s": 21.089,
+        "extraction_s": 0.4652590450000105,
+        "resource_extraction_s": 0.4651190859999872,
+        "grid": [
+          48,
+          48
+        ],
+        "signal_edge_usage": 25618
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.015863655000003973,
+    "simulation_s": 0.015720466000004762,
+    "synthesis_s": 2.3691452779999906,
+    "synthesis_area_um2": 3790.4999999999204,
+    "cells": 2691,
+    "die_side_um": 102,
+    "port_bits": 321,
+    "placement_s": 0.9660517279999965,
+    "placed_area_um2": 3790.4999999999204
+  },
+  {
+    "case": "crossbar_n16_w16",
+    "family": "crossbar",
+    "n": 16,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 1.6675877300000082,
+        "global_route_s": 1.115,
+        "extraction_s": 0.6153244269999902,
+        "resource_extraction_s": 0.6154284090000033,
+        "grid": [
+          66,
+          66
+        ],
+        "signal_edge_usage": 55244
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 66.660651516,
+        "global_route_s": 66.136,
+        "extraction_s": 0.6656602230000317,
+        "resource_extraction_s": 0.6155905100000041,
+        "grid": [
+          66,
+          66
+        ],
+        "signal_edge_usage": 58436
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.031952156000016885,
+    "simulation_s": 0.015890992999999298,
+    "synthesis_s": 4.524375759999998,
+    "synthesis_area_um2": 7541.897999999843,
+    "cells": 5330,
+    "die_side_um": 140,
+    "port_bits": 577,
+    "placement_s": 1.7697673090000023,
+    "placed_area_um2": 7541.897999999843
+  },
+  {
+    "case": "benes_n4_w8",
+    "family": "benes",
+    "n": 4,
+    "w": 8,
+    "split": "calibration",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.3647081080000021,
+        "global_route_s": 0.072,
+        "extraction_s": 0.3147459869999807,
+        "resource_extraction_s": 0.3147821470000167,
+        "grid": [
+          17,
+          17
+        ],
+        "signal_edge_usage": 953
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 0.8158948329999589,
+        "global_route_s": 0.502,
+        "extraction_s": 0.31479268700002194,
+        "resource_extraction_s": 0.31461272799998596,
+        "grid": [
+          17,
+          17
+        ],
+        "signal_edge_usage": 1305
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.015897641000037765,
+    "simulation_s": 0.015692917000023954,
+    "synthesis_s": 0.4646910689999686,
+    "synthesis_area_um2": 323.45599999999945,
+    "cells": 128,
+    "die_side_um": 37,
+    "port_bits": 71,
+    "placement_s": 0.31466729999999643,
+    "placed_area_um2": 323.45599999999945
+  },
+  {
+    "case": "benes_n8_w8",
+    "family": "benes",
+    "n": 8,
+    "w": 8,
+    "split": "calibration",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.4648386189999769,
+        "global_route_s": 0.136,
+        "extraction_s": 0.36495179100000996,
+        "resource_extraction_s": 0.3648750809999797,
+        "grid": [
+          26,
+          26
+        ],
+        "signal_edge_usage": 3416
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 2.8704981559999965,
+        "global_route_s": 2.543,
+        "extraction_s": 0.3650351499999829,
+        "resource_extraction_s": 0.36488961599997083,
+        "grid": [
+          26,
+          26
+        ],
+        "signal_edge_usage": 4712
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.031958910000014384,
+    "simulation_s": 0.03182051999999658,
+    "synthesis_s": 0.615146626000012,
+    "synthesis_area_um2": 885.2480000000043,
+    "cells": 384,
+    "die_side_um": 55,
+    "port_bits": 149,
+    "placement_s": 0.41477478400003065,
+    "placed_area_um2": 885.2480000000043
+  },
+  {
+    "case": "benes_n4_w16",
+    "family": "benes",
+    "n": 4,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.41506464799999776,
+        "global_route_s": 0.106,
+        "extraction_s": 0.36487624000000096,
+        "resource_extraction_s": 0.3649084310000035,
+        "grid": [
+          22,
+          22
+        ],
+        "signal_edge_usage": 2382
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 1.667870076999975,
+        "global_route_s": 1.334,
+        "extraction_s": 0.3648979520000353,
+        "resource_extraction_s": 0.36481022700002086,
+        "grid": [
+          22,
+          22
+        ],
+        "signal_edge_usage": 3026
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.015831257000002097,
+    "simulation_s": 0.01571397700001853,
+    "synthesis_s": 0.5148793779999892,
+    "synthesis_area_um2": 646.9120000000019,
+    "cells": 256,
+    "die_side_um": 48,
+    "port_bits": 135,
+    "placement_s": 0.36477418099997294,
+    "placed_area_um2": 646.9120000000019
+  },
+  {
+    "case": "benes_n8_w16",
+    "family": "benes",
+    "n": 8,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.5652811300000167,
+        "global_route_s": 0.239,
+        "extraction_s": 0.4149422450000202,
+        "resource_extraction_s": 0.3647643820000326,
+        "grid": [
+          34,
+          34
+        ],
+        "signal_edge_usage": 8204
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 5.927516223999987,
+        "global_route_s": 5.62,
+        "extraction_s": 0.36482640700000957,
+        "resource_extraction_s": 0.3647296460000007,
+        "grid": [
+          34,
+          34
+        ],
+        "signal_edge_usage": 9887
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.03191235299999562,
+    "simulation_s": 0.06388183300003902,
+    "synthesis_s": 0.8657965710000326,
+    "synthesis_area_um2": 1770.4959999999924,
+    "cells": 768,
+    "die_side_um": 73,
+    "port_bits": 277,
+    "placement_s": 0.46504144599998654,
+    "placed_area_um2": 1770.4959999999924
+  },
+  {
+    "case": "benes_n16_w8",
+    "family": "benes",
+    "n": 16,
+    "w": 8,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.6654537730000243,
+        "global_route_s": 0.303,
+        "extraction_s": 0.41512047500003746,
+        "resource_extraction_s": 0.415018922999991,
+        "grid": [
+          38,
+          38
+        ],
+        "signal_edge_usage": 10826
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 8.03265204600001,
+        "global_route_s": 7.701,
+        "extraction_s": 0.41503606700001683,
+        "resource_extraction_s": 0.4150957379999909,
+        "grid": [
+          38,
+          38
+        ],
+        "signal_edge_usage": 12541
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.032007813999996415,
+    "simulation_s": 0.1640911400000391,
+    "synthesis_s": 1.116514947999974,
+    "synthesis_area_um2": 2247.168000000013,
+    "cells": 1024,
+    "die_side_um": 81,
+    "port_bits": 313,
+    "placement_s": 0.5652210169999989,
+    "placed_area_um2": 2247.168000000013
+  },
+  {
+    "case": "benes_n16_w16",
+    "family": "benes",
+    "n": 16,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.9661622869999746,
+        "global_route_s": 0.549,
+        "extraction_s": 0.46512498100003086,
+        "resource_extraction_s": 0.4650751990000117,
+        "grid": [
+          52,
+          52
+        ],
+        "signal_edge_usage": 26888
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 20.160214542999995,
+        "global_route_s": 19.788,
+        "extraction_s": 0.5151633710000283,
+        "resource_extraction_s": 0.4649451059999592,
+        "grid": [
+          52,
+          52
+        ],
+        "signal_edge_usage": 28999
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.031944214000020565,
+    "simulation_s": 0.21415188299999954,
+    "synthesis_s": 1.7677447110000344,
+    "synthesis_area_um2": 4494.336000000077,
+    "cells": 2048,
+    "die_side_um": 110,
+    "port_bits": 569,
+    "placement_s": 0.8155753430000345,
+    "placed_area_um2": 4494.336000000077
+  },
+  {
+    "case": "router_n4_w8",
+    "family": "router",
+    "n": 4,
+    "w": 8,
+    "split": "calibration",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 0.5651609999999891,
+        "global_route_s": 0.2,
+        "extraction_s": 0.41506828099994664,
+        "resource_extraction_s": 0.41491909800004123,
+        "grid": [
+          40,
+          40
+        ],
+        "signal_edge_usage": 8676
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 9.98684229700001,
+        "global_route_s": 9.654,
+        "extraction_s": 0.4149098780000031,
+        "resource_extraction_s": 0.41487937499999816,
+        "grid": [
+          40,
+          40
+        ],
+        "signal_edge_usage": 11498
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.031966017999991436,
+    "simulation_s": 0.06392407200002026,
+    "synthesis_s": 2.369190070000002,
+    "synthesis_area_um2": 2530.989999999998,
+    "cells": 1398,
+    "die_side_um": 85,
+    "port_bits": 90,
+    "placement_s": 0.6653944370000318,
+    "placed_area_um2": 2530.989999999998
+  },
+  {
+    "case": "router_n8_w8",
+    "family": "router",
+    "n": 8,
+    "w": 8,
+    "split": "calibration",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 2.469318065999971,
+        "global_route_s": 1.797,
+        "extraction_s": 0.7659295769999517,
+        "resource_extraction_s": 0.7657952849999674,
+        "grid": [
+          78,
+          78
+        ],
+        "signal_edge_usage": 60882
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 90.463947894,
+        "global_route_s": 89.757,
+        "extraction_s": 0.7658888509999997,
+        "resource_extraction_s": 0.7655916699999352,
+        "grid": [
+          78,
+          78
+        ],
+        "signal_edge_usage": 68542
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.03196078700000271,
+    "simulation_s": 0.11397614700001668,
+    "synthesis_s": 14.34674952399996,
+    "synthesis_area_um2": 10748.794000000406,
+    "cells": 7834,
+    "die_side_um": 165,
+    "port_bits": 186,
+    "placement_s": 2.5205775200000176,
+    "placed_area_um2": 10748.794000000406
+  },
+  {
+    "case": "router_n4_w16",
+    "family": "router",
+    "n": 4,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 1.0661598259999892,
+        "global_route_s": 0.659,
+        "extraction_s": 0.465065324999955,
+        "resource_extraction_s": 0.4649923160000071,
+        "grid": [
+          50,
+          50
+        ],
+        "signal_edge_usage": 16262
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 20.758623429000068,
+        "global_route_s": 20.38,
+        "extraction_s": 0.46507527900007517,
+        "resource_extraction_s": 0.4650297140000248,
+        "grid": [
+          50,
+          50
+        ],
+        "signal_edge_usage": 20905
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.0320264680000264,
+    "simulation_s": 0.06391270299991447,
+    "synthesis_s": 3.0706706859999713,
+    "synthesis_area_um2": 4054.9039999999645,
+    "cells": 2150,
+    "die_side_um": 105,
+    "port_bits": 154,
+    "placement_s": 0.8656167130000085,
+    "placed_area_um2": 4054.9039999999645
+  },
+  {
+    "case": "router_n8_w16",
+    "family": "router",
+    "n": 8,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 3.8238233470000296,
+        "global_route_s": 2.865,
+        "extraction_s": 1.0160105870000962,
+        "resource_extraction_s": 1.0163694139999961,
+        "grid": [
+          97,
+          97
+        ],
+        "signal_edge_usage": 108052
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "ok",
+        "openroad_wall_s": 185.51379463599994,
+        "global_route_s": 184.465,
+        "extraction_s": 1.0664947870000105,
+        "resource_extraction_s": 1.0163827720000427,
+        "grid": [
+          97,
+          97
+        ],
+        "signal_edge_usage": 117146
+      }
+    ],
+    "status": "ok",
+    "compile_sim_s": 0.031951145999983055,
+    "simulation_s": 0.113968677999992,
+    "synthesis_s": 19.304706236000015,
+    "synthesis_area_um2": 16825.830000001217,
+    "cells": 12087,
+    "die_side_um": 204,
+    "port_bits": 314,
+    "placement_s": 3.623817847000055,
+    "placed_area_um2": 16825.830000001217
+  },
+  {
+    "case": "router_n16_w8",
+    "family": "router",
+    "n": 16,
+    "w": 8,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "ok",
+        "openroad_wall_s": 138.14233822699987,
+        "global_route_s": 130.469,
+        "extraction_s": 3.5221140730000116,
+        "resource_extraction_s": 3.371977716999936,
+        "grid": [
+          195,
+          195
+        ],
+        "signal_edge_usage": 762584
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "failed",
+        "error": "Command '['openroad', '-exit', 'constrained.tcl']' timed out after 299.99998474200015 seconds"
+      }
+    ],
+    "status": "partial",
+    "compile_sim_s": 0.03198373899999751,
+    "simulation_s": 0.3145097200000464,
+    "synthesis_s": 160.58289058000003,
+    "synthesis_area_um2": 72154.89399998332,
+    "cells": 55863,
+    "die_side_um": 411,
+    "port_bits": 386,
+    "placement_s": 29.28007242600006,
+    "placed_area_um2": 72154.89399998332
+  },
+  {
+    "case": "router_n16_w16",
+    "family": "router",
+    "n": 16,
+    "w": 16,
+    "split": "test",
+    "routes": [
+      {
+        "budget": "nominal",
+        "layers": "metal2-metal6",
+        "adjustment": 0.3,
+        "status": "failed",
+        "error": "Command '['openroad', '-exit', 'nominal.tcl']' timed out after 299.99998591300005 seconds"
+      },
+      {
+        "budget": "constrained",
+        "layers": "metal2-metal4",
+        "adjustment": 0.8,
+        "status": "failed",
+        "error": "Command '['openroad', '-exit', 'constrained.tcl']' timed out after 299.99998462099984 seconds"
+      }
+    ],
+    "status": "partial",
+    "compile_sim_s": 0.06405901499988431,
+    "simulation_s": 0.31457306699985566,
+    "synthesis_s": 216.07439812400003,
+    "synthesis_area_um2": 111178.15799997357,
+    "cells": 84588,
+    "die_side_um": 508,
+    "port_bits": 642,
+    "placement_s": 46.330153309000025
+  }
+]
