@@ -13,6 +13,9 @@ jobs:
   validate:
     runs-on: ubuntu-22.04
     timeout-minutes: 40
+    env:
+      BENCH_MODE: full
+      ORFS_REF: a16fb344899f51d75bee31ad18650a2aa91d8c53
     steps:
       - uses: actions/checkout@v4
       - uses: actions/cache@v4
@@ -22,12 +25,7 @@ jobs:
       - name: Install pinned OpenROAD and public Nangate45 library
         run: bash benchmarks/install_tools.sh
       - name: Run synthesis, placement, global routing, and metrics
-        run: |
-          if test -f benchmarks/run.py; then
-            python3 benchmarks/run.py
-          else
-            echo 'Bootstrap-only run; no accuracy claims.' | tee benchmark-results/STATUS.txt
-          fi
+        run: python3 benchmarks/run.py
       - name: Upload unfiltered evidence
         if: always()
         uses: actions/upload-artifact@v4
