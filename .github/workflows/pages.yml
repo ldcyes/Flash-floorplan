@@ -32,7 +32,11 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp index.html _site/index.html
+          # Pixel-art landing page becomes the public root.
+          cp pixel.html _site/index.html
+          # Preserve the existing functional planner under /planner.html.
+          cp index.html _site/planner.html
+          cp README.md _site/README.md
           touch _site/.nojekyll
 
       - name: Upload Pages artifact
