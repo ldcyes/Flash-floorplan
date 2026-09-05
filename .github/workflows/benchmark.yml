@@ -1,0 +1,40 @@
+name: Flash-flooplanner RTL validation
+on:
+  push:
+    branches: [benchmark/openroad-validation]
+    paths: ['benchmarks/**', '.github/workflows/benchmark.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: flash-benchmark-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/cache@v4
+        with:
+          path: tool-cache
+          key: openroad-a008522d8-ubuntu2204
+      - name: Install pinned OpenROAD and public Nangate45 library
+        run: bash benchmarks/install_tools.sh
+      - name: Run synthesis, placement, global routing, and metrics
+        run: |
+          if test -f benchmarks/run.py; then
+            python3 benchmarks/run.py
+          else
+            echo 'Bootstrap-only run; no accuracy claims.' | tee benchmark-results/STATUS.txt
+          fi
+      - name: Upload unfiltered evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: flash-validation-${{ github.run_number }}
+          path: |
+            benchmark-results
+            platform
+            benchmarks
+          retention-days: 30
