@@ -1,0 +1,54 @@
+name: Publish measured validation summary
+on:
+  push:
+    branches: [benchmark/openroad-validation]
+    paths: [.github/workflows/publish-validation.yml]
+  workflow_dispatch:
+permissions:
+  actions: read
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: benchmark/openroad-validation
+      - name: Retrieve exact measured artifact (not a re-run)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh api repos/ldcyes/Flash-floorplan/actions/artifacts/9969093457/zip > run9.zip
+          mkdir raw
+          unzip -q run9.zip -d raw
+      - name: Publish actual JSON and a readable result summary
+        run: |
+          python3 - <<'PY'
+          import json,pathlib,shutil,hashlib
+          r=pathlib.Path('raw/benchmark-results');o=pathlib.Path('docs/validation');o.mkdir(parents=True,exist_ok=True)
+          s=json.loads((r/'summary.json').read_text());a=json.loads((r/'area_metrics.json').read_text());c=json.loads((r/'congestion_metrics.json').read_text());cases=json.loads((r/'cases.json').read_text())
+          for f in ['summary.json','area_metrics.json','congestion_metrics.json','cases.json','protocol.json','host.txt','openroad-version.txt','yosys-version.txt','iverilog-version.txt']:
+            if (r/f).exists():shutil.copy2(r/f,o/f)
+          lines=['# Executed Nangate45 validation pilot','','Source commit: `194ab85fd1f6058b772fe9a7daa4d1fe882068b2`.','Primary run: https://github.com/ldcyes/Flash-floorplan/actions/runs/33963302104','Raw artifact: `9969093457`. SHA256: `'+hashlib.sha256(pathlib.Path('run9.zip').read_bytes()).hexdigest()+'`.','','All 18 RTL designs completed simulation, synthesis and placement. 33/36 route scenarios completed; three 300-second OpenROAD process timeouts are retained. Workflow failure is intentional when route cases fail. Completed global routing does not imply zero overflow.','','## Held-out mapped-cell area','','Each family has two calibration designs and four test designs. No test area enters scalar fitting.','','| Family | Test n | MAPE (%) | Max APE (%) |','|---|---:|---:|---:|']
+          for family in ['crossbar','benes','router','all']:
+            v=s['area'][family];lines.append('| %s | %d | %.4f | %.4f |'%(family,v['n'],v['mape_pct'],v['max_ape_pct']))
+          lines+=['','## Held-out post-placement routing adapter','','Known placed pins and characterized resource supply; not a full no-RTL placement or multi-foundry validation. Hotspot threshold is projected H/V pressure >=0.8. v6 driver-star/tile and experimental MST/segment-union are reported separately.','','| Method/budget | Maps | Mean Pearson | Mean Spearman | Pooled F1 | Kernel median (ms) |','|---|---:|---:|---:|---:|---:|']
+          for method in ['legacy_star_tile','mst_union_edge']:
+            for budget in ['nominal','constrained','all']:
+              k=method+'/'+budget;v=s['congestion'][k];lines.append('| %s | %d | %.4f | %.4f | %.4f | %.4f |'%(k,v['n'],v['pearson_macro'],v['spearman_macro'],v['hotspot_f1_micro'],v['median_kernel_ms']))
+          lines+=['','**F1 caveat:** constrained maps are overwhelmingly positive; compare an always-hot baseline and inspect per-map support/TP/FP/FN/TN. High pooled F1 alone does not establish hotspot localization. Kernel timing excludes synthesis, placement, I/O and process startup.','','## Failed route scenarios','']
+          for case in cases:
+            for route in case['routes']:
+              if route['status']!='ok':lines.append('- `'+case['case']+' / '+route['budget']+'`: '+route.get('error','route error'))
+          lines+=['','## Measurement boundaries','','One public Nangate45 typical library; no commercial 28nm-to-2nm, compiled SRAM/PHY, W2W yield/cost, timing, power or detailed-routing validation. Resource-only occupancy is subtracted from routed usage before treating it as signal demand.','See JSON for complete runtime distributions, masks, missing-case accounting and per-map metrics. Raw RTL/netlist/LEF/Liberty/ODB/DEF/guide/log evidence remains attached to the primary run.']
+          (o/'README.md').write_text('\n'.join(lines)+'\n')
+          PY
+      - name: Commit measured summaries to isolated benchmark branch
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add docs/validation
+          git diff --cached --quiet && exit 0
+          git commit -m 'docs: measured Nangate45 validation from immutable run 33963302104'
+          git push origin HEAD:benchmark/openroad-validation
