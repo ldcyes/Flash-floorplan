@@ -1,0 +1,57 @@
+name: Recover verified Pixel v8.3 static release
+on:
+  push:
+    branches: [fix/pages-v8.3-recovery]
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: pixel-v83-recovery
+  cancel-in-progress: false
+jobs:
+  recover:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    env:
+      EXPECTED_BASE: 9ed04fb2fdbfe4b1078dde1b482d982a2e6e694a
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Recover and verify exact source
+        run: |
+          set -euo pipefail
+          python3 .recovery/recover.py
+          python3 /tmp/flash-restored/tools/check_site.py
+      - name: Install isolated browser test dependencies
+        run: |
+          python3 -m venv /tmp/flash-browser-env
+          /tmp/flash-browser-env/bin/pip install playwright==1.55.0
+          /tmp/flash-browser-env/bin/playwright install --with-deps chromium
+      - name: Test both real HTTP entries in Chromium
+        run: |
+          set -euo pipefail
+          /tmp/flash-browser-env/bin/python /tmp/flash-restored/tools/smoke_browser.py | tee /tmp/flash-browser-smoke.txt
+      - name: Stage clean production files on a reviewable branch
+        run: |
+          set -euo pipefail
+          git fetch origin main
+          test "$(git rev-parse origin/main)" = "$EXPECTED_BASE"
+          test -z "$(git ls-remote --heads origin refs/heads/fix/pages-v8.3-static)"
+          git switch -c fix/pages-v8.3-static "$EXPECTED_BASE"
+          cp -a /tmp/flash-restored/. .
+          git rm -r --ignore-unmatch site/v8.3 site/v8.3-xz
+          git add index.html planner.html planner/index.html build-info.json README.md tools
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -m 'Restore exact complete Pixel v8.3 as static HTML and repair planner aliases'
+          git push origin HEAD:refs/heads/fix/pages-v8.3-static
+          echo "READY_COMMIT=$(git rev-parse HEAD)"
+      - name: Preserve smoke-test evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-v83-recovery-checks
+          path: |
+            /tmp/flash-browser-smoke.txt
+            /tmp/flash-restored/build-info.json
