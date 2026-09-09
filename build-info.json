@@ -1,0 +1,11 @@
+{
+  "version": "8.3.0",
+  "planner_bytes": 554063,
+  "planner_sha256": "65a187941021feef7c81970b63915317e7be9192630205d8fe1511e110fa52c7",
+  "entrypoints": [
+    "/",
+    "planner.html",
+    "planner/"
+  ],
+  "source": "Recovered exact frozen v8.3 HTML; production serves plain static files"
+}
