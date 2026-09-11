@@ -1,0 +1,84 @@
+--- a/index.html
++++ b/index.html
+@@ -982,10 +982,6 @@
+       pll:['PLL / Clocking','PLL、时钟生成与模拟保留区。'], analog:['Analog / SerDes Custom','自定义模拟或 SerDes hard macro。'],
+       amd_zen4_core:['AMD Zen 4 Core','公开结构锚点：每 Core 1MB L2、256-bit 向量数据通路。0.128 FP32 TFLOPS、TFLOPS/mm² 与 TFLOPS/W 是可编辑规划归一值。'],
+       amd_zen4_ccd:['AMD Zen 4 CCD（8 Core）','8 个 Zen 4 Core、8MB 总 L2 与共享 32MB L3；40MB 缓存预算单独按 SRAM 密度计算。性能密度和能效为规划校准值。'],
+-
+-
+-      tt_blackhole_tensix:['Tenstorrent Blackhole Tensix Core','按 120 Core、664 BLOCKFP8 TFLOPS、180MB SRAM 与 300W TBP 归一化；6nm 工艺映射和面积密度可校准。'],
+-      tt_blackhole_p150:['Tenstorrent Blackhole p150（120 Core）','官方锚点：120 Tensix、16 个大 RISC-V Core、1.35GHz、180MB SRAM、664 BLOCKFP8 TFLOPS、512GB/s 与 300W。'],
+       nvidia_blackwell_sm:['NVIDIA Blackwell SM','以 128 CUDA Core、4 Tensor Core 和最高 228KB shared memory/SM 为结构锚点；峰值与能效按 full implementation 归一化。'],
+@@ -1007,10 +1003,6 @@
+       gpio:['GPIO Bank（64）','通用 GPIO / Pad bank。'], jtag:['JTAG / DFT','TCK/TMS/TDI/TDO/TRST 範本。'], pll:['PLL / Clocking','PLL、時脈產生與類比保留區。'], analog:['Analog / SerDes Custom','自訂類比或 SerDes hard macro。'],
+       amd_zen4_core:['AMD Zen 4 Core','公開結構錨點：每 Core 1MB L2、256-bit 向量資料路徑。0.128 FP32 TFLOPS、TFLOPS/mm² 與 TFLOPS/W 為可編輯規劃值。'],
+       amd_zen4_ccd:['AMD Zen 4 CCD（8 Core）','8 個 Zen 4 Core、8MB 總 L2 與共享 32MB L3；40MB 快取預算依 SRAM 密度獨立計算。'],
+-
+-
+-      tt_blackhole_tensix:['Tenstorrent Blackhole Tensix Core','依 120 Core、664 BLOCKFP8 TFLOPS、180MB SRAM 與 300W TBP 正規化；6nm 製程映射和面積密度可校準。'],
+-      tt_blackhole_p150:['Tenstorrent Blackhole p150（120 Core）','官方錨點：120 Tensix、16 個大型 RISC-V Core、1.35GHz、180MB SRAM、664 BLOCKFP8 TFLOPS、512GB/s 與 300W。'],
+       nvidia_blackwell_sm:['NVIDIA Blackwell SM','以 128 CUDA Core、4 Tensor Core 與最高 228KB shared memory/SM 為結構錨點；峰值與效率依 full implementation 正規化。'],
+@@ -1032,10 +1024,6 @@
+       gpio:['GPIO Bank (64)','Generic GPIO / pad bank.'], jtag:['JTAG / DFT','TCK/TMS/TDI/TDO/TRST template; can be configured as 4-pin JTAG.'], pll:['PLL / Clocking','PLL, clock-generation and analog keepout region.'], analog:['Analog / SerDes Custom','Custom analog or SerDes hard macro.'],
+       amd_zen4_core:['AMD Zen 4 Core','Public structural anchors: 1 MB L2 per core and a 256-bit vector datapath. The 0.128 FP32 TFLOPS, TFLOPS/mm² and TFLOPS/W defaults are editable planning normalizations.'],
+       amd_zen4_ccd:['AMD Zen 4 CCD (8 Core)','Eight Zen 4 cores, 8 MB aggregate L2 and 32 MB shared L3; the 40 MB cache budget is sized independently using SRAM density.'],
+-
+-
+-      tt_blackhole_tensix:['Tenstorrent Blackhole Tensix Core','Normalized from 120 cores, 664 BLOCKFP8 TFLOPS, 180 MB SRAM and 300 W TBP; the 6 nm mapping and area density are calibratable.'],
+-      tt_blackhole_p150:['Tenstorrent Blackhole p150 (120 Core)','Official anchors: 120 Tensix cores, 16 big RISC-V cores, 1.35 GHz, 180 MB SRAM, 664 BLOCKFP8 TFLOPS, 512 GB/s and 300 W.'],
+       nvidia_blackwell_sm:['NVIDIA Blackwell SM','Structural anchors include 128 CUDA cores, four Tensor Cores and up to 228 KB shared memory per SM; peak and efficiency use a full-implementation normalization.'],
+@@ -1056,10 +1044,6 @@
+       gpio:['GPIO Bank（64）','汎用 GPIO / Pad bank。'], jtag:['JTAG / DFT','TCK/TMS/TDI/TDO/TRST テンプレート。'], pll:['PLL / Clocking','PLL、クロック生成、アナログ keepout。'], analog:['Analog / SerDes Custom','カスタムアナログまたは SerDes hard macro。'],
+       amd_zen4_core:['AMD Zen 4 Core','公開構造アンカーは Core 当たり 1MB L2 と 256-bit ベクトルデータパスです。0.128 FP32 TFLOPS、TFLOPS/mm²、TFLOPS/W は編集可能な計画値です。'],
+       amd_zen4_ccd:['AMD Zen 4 CCD（8 Core）','8 個の Zen 4 Core、合計 8MB L2、共有 32MB L3。40MB キャッシュ予算は SRAM 密度で独立に見積もります。'],
+-
+-
+-      tt_blackhole_tensix:['Tenstorrent Blackhole Tensix Core','120 Core、664 BLOCKFP8 TFLOPS、180MB SRAM、300W TBP から正規化。6nm 対応と面積密度は校正可能です。'],
+-      tt_blackhole_p150:['Tenstorrent Blackhole p150（120 Core）','公式アンカー：120 Tensix、16 big RISC-V Core、1.35GHz、180MB SRAM、664 BLOCKFP8 TFLOPS、512GB/s、300W。'],
+       nvidia_blackwell_sm:['NVIDIA Blackwell SM','128 CUDA Core、4 Tensor Core、SM 当たり最大 228KB shared memory を構造アンカーとし、ピークと効率は full implementation で正規化します。'],
+@@ -1673,32 +1657,6 @@
+       archSchema: CLUSTER_SCHEMA,
+       description: '公开结构锚点：8 个 Zen 4 Core、每 Core 1MB L2、共享 32MB L3；模板把 40MB 总片上缓存作为 320Mbit SRAM 预算。FP32 峰值、计算密度和能效是可编辑规划值，用于跨制程 floorplan 折算。'
+     },
+-    tt_blackhole_tensix: {
+-      group: '公开架构参考', label: 'Tenstorrent Blackhole Tensix Core', short: 'BH-TX', sizing: 'architecture', archModel: 'computeCore', color: '#48675f',
+-      powerW: 2.50, signalCount: 448, blockage: 0.59, preferredEdge: 'none',
+-      archDefaults: {
+-        sizingMode: 'performance', computeFormat: 'BLOCKFP8', metricRefProcess: 'TSMC|6',
+-        peakTflops: 5.533, flopsPerMm2: 1.35, flopsPerW: 2.213,
+-        densityRealizationPct: 100, efficiencyRealizationPct: 100, auxPowerPct: 0,
+-        lanes: 1, dataWidth: 8, issueWidth: 1, localSramMbit: 12, sramOverhead: 1.18,
+-        baseArea12: 9.0, aspect: 1.0, areaScale: 1.0
+-      },
+-      archSchema: CORE_SCHEMA,
+-      description: '由 Blackhole 的 120 个 Tensix Core、664 BLOCKFP8 TFLOPS、180MB SRAM 和 300W board power 归一化得到。TSMC N6 是 6nm-class 工艺代理，不代表官方 foundry 映射；TFLOPS/mm² 为可编辑规划校准值。'
+-    },
+-    tt_blackhole_p150: {
+-      group: '公开架构参考', label: 'Tenstorrent Blackhole p150（120 Core）', short: 'BH150', sizing: 'architecture', archModel: 'computeCluster', color: '#426159',
+-      powerW: 300, signalCount: 2048, blockage: 0.68, preferredEdge: 'none',
+-      archDefaults: {
+-        sizingMode: 'performance', computeFormat: 'BLOCKFP8', metricRefProcess: 'TSMC|6',
+-        peakTflops: 664, flopsPerMm2: 1.35, flopsPerW: 2.2133,
+-        densityRealizationPct: 100, efficiencyRealizationPct: 100, auxPowerPct: 0,
+-        coreCount: 120, unitArea12: 9.0, clusterOverheadPct: 5,
+-        sharedSramMbit: 1440, sramOverhead: 1.18, aspect: 1.05, areaScale: 1.0
+-      },
+-      archSchema: CLUSTER_SCHEMA,
+-      description: '官方 p150 锚点：120 Tensix Core、16 个 SiFive X280 RISC-V Core、1.35GHz、180MB SRAM、664 BLOCKFP8 TFLOPS、512GB/s GDDR6、300W TBP、PCIe 5.0 x16。面积密度为可编辑规划值。'
+-    },
+     nvidia_blackwell_sm: {
+@@ -1764,8 +1722,7 @@
+       }
+     }
+   }
+-  for(const key of ['tt_blackhole_core','tt_blackhole_p150'])if(TEMPLATES[key]){TEMPLATES[key].archDefaults.powerMetricScope='board';TEMPLATES[key].archDefaults.siliconPowerPct=0;}
+-  TEMPLATES.nvidia_blackwell_b200.budgetOnly=true;
++TEMPLATES.nvidia_blackwell_b200.budgetOnly=true;
+@@ -5634,7 +5591,6 @@
+     const key=m?.templateKey||'';
+     if(key.startsWith('amd_'))return ['AMD Zen 4 / Hot Chips 2023','https://hc2023.hotchips.org/assets/program/conference/day1/CPU1/HC_Zen4_Epyc_Final_20230825%20-%20Embargoed%20until%20Aug%2029%202023.pdf'];
+     if(window.FlashCPU86.isCPU(key)){const c=window.FlashCPU86.catalog(),s=c.sources[c.templates.find(x=>x.key===key).sourceIds[0]];return [s.title,s.url];}
+-    if(key.includes('blackhole'))return ['Tenstorrent Blackhole','https://docs.tenstorrent.com/aibs/blackhole/index.html'];
+     if(key.includes('blackwell'))return ['NVIDIA Blackwell','https://docs.nvidia.com/cuda/blackwell-tuning-guide/index.html'];
+     return null;
+   }
