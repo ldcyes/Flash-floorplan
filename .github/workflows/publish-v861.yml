@@ -1,0 +1,51 @@
+name: Publish Pixel v8.6.1
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'release/v8.6/**'
+      - 'release/v8.6.1/**'
+      - '.github/workflows/publish-v861.yml'
+permissions:
+  contents: write
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Reconstruct verified v8.6 and apply v8.6.1 patch
+        run: |
+          set -euo pipefail
+          cat release/v8.6/part-*.txt | base64 -d | xz -dc > index.html
+          grep -q "Tenstorrent RISC-V Ocelot" index.html
+          patch -p1 < release/v8.6.1/remove-blackhole.patch
+          ! grep -q "tt_blackhole_tensix" index.html
+          ! grep -q "tt_blackhole_p150" index.html
+          cp index.html planner.html
+          SHA=$(sha256sum index.html | awk '{print $1}')
+          BYTES=$(wc -c < index.html)
+          cat > build-info.json <<EOF
+          {"version":"8.6.1","planner_bytes":${BYTES},"planner_sha256":"${SHA}","entrypoints":["/","planner.html","planner/"],"source":"Pixel v8.6 reconstructed from checked release payload; v8.6.1 removes Tenstorrent Blackhole templates"}
+          EOF
+          cat > tools/check_site.py <<'PY'
+          #!/usr/bin/env python3
+          from pathlib import Path
+          import hashlib,json
+          root=Path(__file__).resolve().parents[1]
+          a=(root/'index.html').read_bytes(); b=(root/'planner.html').read_bytes()
+          assert a==b and len(a)>600000
+          s=a.decode('utf-8')
+          for x in ['Tenstorrent RISC-V Ocelot','Arm Cortex-A55','NVIDIA Vera','window.FlashPlanner=','</html>']: assert x in s
+          for x in ['tt_blackhole_tensix','tt_blackhole_p150','Tenstorrent Wormhole']: assert x not in s
+          print(json.dumps({'bytes':len(a),'sha256':hashlib.sha256(a).hexdigest(),'version':'8.6.1'}))
+          PY
+          python3 tools/check_site.py
+      - name: Commit published planner
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git add index.html planner.html build-info.json tools/check_site.py
+          git diff --cached --quiet && exit 0
+          git commit -m "Publish Pixel v8.6.1 CPU templates and remove Tenstorrent Blackhole"
+          git push
