@@ -3,7 +3,7 @@ on:
   push:
     branches: [main]
     paths:
-      - release/v8.6.1/direct-staging/READY
+      - release/v8.6.1/direct-patch-staging/READY
 permissions:
   contents: write
 jobs:
@@ -14,15 +14,24 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - name: Reconstruct and verify full planner
+      - name: Reconstruct patch and verify full planner
         run: |
           set -euo pipefail
-          cat release/v8.6.1/direct-staging/part-*.txt | tr -d '\n' > /tmp/v861.xz.b64
-          test "$(wc -c < /tmp/v861.xz.b64)" -eq 208968
-          echo "785d586ffb11836985a810287b341c8207725a754032f902bb703d5bf0213cf5  /tmp/v861.xz.b64" | sha256sum -c -
-          base64 -d /tmp/v861.xz.b64 > /tmp/v861.xz
-          xz --test /tmp/v861.xz
-          xz -dc /tmp/v861.xz > /tmp/index.html
+          # The production state is direct HTML. These staging pieces are only a one-time
+          # transport for the textual diff because the chat connector cannot upload a 644 KB
+          # local file in one call.
+          cat release/v8.6.1/direct-patch-staging/part-*.txt | tr -d '\n' > /tmp/v861.patch.xz.b64
+          test "$(wc -c < /tmp/v861.patch.xz.b64)" -eq 94268
+          echo "3723831d9e0589a8878a5fbf7fc1078c4d045e7d98b876f0ae2dcf0eacb76309  /tmp/v861.patch.xz.b64" | sha256sum -c -
+          base64 -d /tmp/v861.patch.xz.b64 > /tmp/v861.patch.xz
+          xz --test /tmp/v861.patch.xz
+          xz -dc /tmp/v861.patch.xz > /tmp/v861.patch
+          echo "a98723f6d060e8e6b8a6b1a730e5ff9e8aa58f0dcc331d67d00039e4cea9f8b8  /tmp/v861.patch" | sha256sum -c -
+          # Base must be the frozen direct v8.3 file currently in main.
+          test "$(wc -c < index.html)" -eq 554063
+          test "$(git hash-object index.html)" = "dab2f3ca7031f2ae995a715250e40880aec31269"
+          cp index.html /tmp/index.html
+          patch /tmp/index.html < /tmp/v861.patch
           test "$(wc -c < /tmp/index.html)" -eq 644079
           echo "9375410a2d29434c61a7abf96ac4d7ddf90cb2dcf8347f179bd17dd315e07783  /tmp/index.html" | sha256sum -c -
           grep -q "uiVersion:'8.6.1'" /tmp/index.html
