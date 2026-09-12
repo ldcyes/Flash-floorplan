@@ -1,0 +1,8 @@
+\section{Open-Source Benchmark Validation}
+We use a deliberately narrow validation protocol so that measured evidence is not over-generalized. A fixed set of 18 RTL configurations spans parameterized crossbars, Bene\v{s} networks, and routers. The flow uses Icarus Verilog simulation, Yosys/ABC standard-cell mapping, and OpenROAD placement and global routing with the Nangate45 library. Each design is evaluated under nominal and constrained routing budgets where feasible.
+
+Area calibration uses a small subset per family and evaluates held-out configurations. The target is mapped cell area, not final die area. Routing validation starts from an identical placed design and native OpenROAD GCell grid. The reference signal pressure subtracts resource-only usage from routed usage so that capacity reservations are not mistaken for signal demand.
+
+Two prediction adapters are compared. The original v6 star adapter connects the source independently to sinks on the coarse grid. The experimental MST-plus-segment-union adapter builds a rectilinear approximation to shared trunks and avoids repeatedly charging identical segments of a multi-terminal net. Per-map Pearson and Spearman correlations measure spatial agreement. Hotspot F1 uses a threshold of directional demand/supply $\Gamma\ge0.8$ and is reported with a prevalence-aware all-positive baseline.
+
+Runtime is separated into synthesis, placement, global route, and the planner-side prediction kernel. We do not divide millisecond kernel time by a complete RTL-to-route flow and call the ratio an end-to-end speedup, because the predictor in this experiment consumes placed pin locations.
