@@ -1,0 +1,28 @@
+\section{Four-Layer Modeling Framework}
+Figure~\ref{fig:framework} summarizes the methodology. Inputs are transformed through four explicitly separated model layers: architecture, technology, physical, and economics. This separation reduces the temptation to treat a heuristic congestion score with the same confidence as a published bus width or a measured wafer parameter.
+
+\begin{figure*}[t]
+\centering
+\input{figures/framework_figure}
+\caption{Flash-flooplanner v8.6.1 methodology. Signal arrows occupy dedicated gutters between blocks; feedback arrows are routed below the main flow so that labels, boxes, and connectors do not overlap.}
+\label{fig:framework}
+\end{figure*}
+
+\paragraph{Architecture model.}
+The library contains generic logic, SRAM, compute cores and clusters, routers, crossbars, Bene\v{s} networks, arbiters, mux/demux blocks, PHYs, and CPU reference templates. CPU templates include Cortex-A55, Cortex-A76, Cortex-R82, BOOM configurations, XiangShan, Arm C1-Ultra, NVIDIA Vera Olympus, and Tenstorrent Ocelot. Tenstorrent Wormhole and Blackhole selectable templates are intentionally removed; Ocelot remains as the Tenstorrent CPU reference. Legacy projects that contain retired templates are preserved as fixed custom geometry rather than silently deleted.
+
+\paragraph{Technology model.}
+Logic and SRAM scale independently. Foundry-visible node names are mapped to internal model keys because commercial naming is not numerically interchangeable. SRAM capacity is converted using a node-dependent density and explicit macro overhead. Frequency and power scaling remain scenario assumptions, not guaranteed simultaneous PPA gains.
+
+\paragraph{Physical model.}
+Blocks have geometry, orientation, edge constraints, and routing blockage. Connections carry signal count, class, track factor, route preference, source/target edge anchors, and horizontal/vertical metal allocation. A coarse grid accumulates directional demand and compares it with available track capacity. Multi-tier W2W designs maintain separate tier yield and bonding yield terms.
+
+\paragraph{Economic model.}
+Gross dies per wafer, defect yield, bonding yield, package/test cost, and optional NRE amortization are kept distinct. For $N$ stacked tiers,
+\begin{equation}
+Y_{\mathrm{stack}}=\left(\prod_{i=1}^{N}Y_i\right)\left(\prod_{j=1}^{N-1}Y_{b,j}\right).
+\end{equation}
+When the yield denominator is zero the tool reports no good units instead of returning an artificially finite cost.
+
+\paragraph{Evidence labels.}
+Each major datum can be tagged Measured, Calibrated, Estimated, or Heuristic. The label is carried into reports so that a published architectural fact is not confused with a user-editable planning normalization.
