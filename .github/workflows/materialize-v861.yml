@@ -1,0 +1,45 @@
+name: Materialize direct v8.6.1 HTML
+on:
+  push:
+    branches: [main]
+    paths:
+      - release/v8.6.1/direct-staging/READY
+permissions:
+  contents: write
+jobs:
+  materialize:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Reconstruct and verify full planner
+        run: |
+          set -euo pipefail
+          cat release/v8.6.1/direct-staging/part-*.txt | tr -d '\n' > /tmp/v861.xz.b64
+          test "$(wc -c < /tmp/v861.xz.b64)" -eq 208968
+          echo "785d586ffb11836985a810287b341c8207725a754032f902bb703d5bf0213cf5  /tmp/v861.xz.b64" | sha256sum -c -
+          base64 -d /tmp/v861.xz.b64 > /tmp/v861.xz
+          xz --test /tmp/v861.xz
+          xz -dc /tmp/v861.xz > /tmp/index.html
+          test "$(wc -c < /tmp/index.html)" -eq 644079
+          echo "9375410a2d29434c61a7abf96ac4d7ddf90cb2dcf8347f179bd17dd315e07783  /tmp/index.html" | sha256sum -c -
+          grep -q "uiVersion:'8.6.1'" /tmp/index.html
+          grep -q 'FlashCPU86' /tmp/index.html
+          ! grep -q 'id="driveBtn"' /tmp/index.html
+          ! grep -q 'tt_blackhole_tensix:' /tmp/index.html
+          ! grep -q 'tt_blackhole_p150:' /tmp/index.html
+          ! grep -q 'tt_wormhole_tensix:' /tmp/index.html
+          ! grep -q 'tt_wormhole_n150:' /tmp/index.html
+      - name: Commit direct files to main
+        run: |
+          set -euo pipefail
+          cp /tmp/index.html index.html
+          cp /tmp/index.html planner.html
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add index.html planner.html
+          git diff --cached --quiet && exit 0
+          git commit -m 'Materialize Pixel v8.6.1 as direct HTML'
+          git push origin HEAD:main
