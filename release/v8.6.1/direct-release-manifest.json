@@ -1,0 +1,8 @@
+{
+  "version": "8.6.1",
+  "strategy": "direct-html",
+  "index_bytes": 644079,
+  "index_sha256": "9375410a2d29434c61a7abf96ac4d7ddf90cb2dcf8347f179bd17dd315e07783",
+  "entries": ["index.html", "planner.html"],
+  "notes": "Final repository state uses full HTML files directly. No runtime xz/base64 reconstruction is required."
+}
