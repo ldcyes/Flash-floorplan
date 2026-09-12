@@ -1,0 +1,21 @@
+\section{Connectivity and Editing Model}
+A key v8.6.1 change is treating interconnect as a maintained list of design objects. A net records source and destination module IDs, physical signal count, track factor, traffic class, route mode, metal band, edge anchors, and the horizontal/vertical layer sets used by the bus. Hiding a net changes only visualization; it does not remove physical demand.
+
+\subsection{Edge-Anchored Orthogonal Buses}
+Each endpoint is represented as a module edge plus a normalized offset along that edge. Module translation therefore moves the endpoint without changing its semantic attachment. A $90^\circ$ rotation maps the edge and offset into the rotated coordinate system. The route generator exits and enters modules along edge normals and creates Manhattan segments between them. This removes the common visualization defect in which a thick connection appears to scrape along a module boundary rather than terminate on it.
+
+The drawing separates a thin centerline, used for hit testing and route readability, from a translucent corridor representing estimated planar bus width. For a horizontal segment assigned a set $\mathcal{M}_H$ of legal layers, a first-order width estimate is
+\begin{equation}
+W_H \approx \frac{N_{\mathrm{track}}}{\sum_{m\in\mathcal{M}_H}\eta_m/p_m}+2g,
+\end{equation}
+where $p_m$ is routing pitch, $\eta_m$ is effective usable-track fraction, and $g$ is guard space. The vertical expression is analogous. Adding layers can reduce planar corridor width but does not reduce the number of physical signals. Shared layers remain shared resources; overlapping demands accumulate.
+
+\subsection{Fast Editing}
+The Place-wire mode, invoked by the toolbar or the \texttt{P} key, uses a two-click source/target interaction and previews the orthogonal route before committing it. The user can set signal count, net class, metal band, and H/V layer counts before placement. The Space key rotates a selected module clockwise by $90^\circ$; Shift+Space rotates counter-clockwise. Text-entry fields and IME composition suppress these shortcuts. Both operations enter the existing undo/redo history.
+
+\subsection{Partition and Fabric Exploration}
+The partition objective is
+\begin{equation}
+J=\alpha C_{\mathrm{cut}}+\beta C_{\mathrm{wire}}+\gamma C_{\mathrm{balance}}+\delta C_{\mathrm{congestion}}.
+\end{equation}
+The Architecture Lab compares a flat crossbar, hierarchical crossbar, Bene\v{s}, mesh, and ring using the same endpoint set and offered traffic. A candidate is applied only after explicit confirmation; previewing does not mutate the project. This comparison is heuristic and does not constitute a protocol, deadlock, or timing proof.
