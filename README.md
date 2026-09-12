@@ -1,28 +1,31 @@
-# Flash-flooplanner Pixel Edition 8.3
+# Flash-flooplanner Pixel Edition 8.6.1
 
-The complete interactive planner is served directly at https://ldcyes.github.io/Flash-floorplan/ .
-The compatibility entry https://ldcyes.github.io/Flash-floorplan/planner.html serves the same verified application.
+Interactive early-stage IC architecture exploration with process scaling, SRAM-aware sizing, metal-aware routing pressure, W2W yield/cost, first-class connection management, and topology comparison.
 
-## Deployment repair
+- Planner: https://ldcyes.github.io/Flash-floorplan/
+- Compatibility entry: https://ldcyes.github.io/Flash-floorplan/planner.html
+- Updated preprint PDF: https://ldcyes.github.io/Flash-floorplan/paper.pdf
+- Paper source: `paper/v8.6.1/`
 
-The earlier Pages job failed with `xz: Unexpected end of input`: only a prefix of the encoded release was committed. It also stopped publishing the legacy `planner.html` entry. The exact frozen v8.3 application is now restored as ordinary HTML, with no browser decompression loader or incomplete payload in the deployment path.
+## v8.6.1 highlights
 
-- `index.html`: complete, self-contained Pixel v8.3 software, not a landing page.
-- `planner.html`: identical compatibility entry.
-- `planner/index.html`: compatibility redirect to the root.
-- `pixel.html`: previous introduction page, retained separately.
-- `build-info.json`: version, byte count and SHA-256 of the planner.
-- `tools/check_site.py`: release integrity and 15 embedded JavaScript syntax checks.
-- `tools/smoke_browser.py`: HTTP-served Chromium smoke test of both entries.
-- `tools/verify_public.py`: post-deployment public HTTP and full-file digest checks.
+- CPU templates: Arm Cortex-A55, Cortex-A76, Cortex-R82, BOOM, XiangShan, Arm C1-Ultra, NVIDIA Vera Olympus, and Tenstorrent RISC-V Ocelot.
+- Tenstorrent Wormhole and Blackhole are removed from the selectable template library. Legacy projects are preserved as fixed custom geometry when possible.
+- Persistent connection list with edge-anchored orthogonal buses.
+- Per-net horizontal/vertical metal-layer allocation and corridor-width estimation.
+- `P` Place-wire shortcut, Space / Shift+Space 90-degree module rotation, undo/redo integration.
+- Flat Crossbar / Hierarchical Crossbar / Beneš / Mesh / Ring comparison and partition objective.
+- Google Drive import/save UI is removed; projects remain local-first through JSON and drawing exports.
+- Pixel-only product styling.
 
-## Local use
+## Paper and validation
 
-Run `python3 -m http.server 8080` in this directory, then open `http://localhost:8080/`.
-The core planner also works as a standalone local HTML file. Google Drive requires separate OAuth configuration and an authorized origin.
+The v8.6.1 preprint separates measured/calibrated/estimated/heuristic evidence and includes a redrawn architecture figure with dedicated connector gutters and a separate feedback lane to prevent arrows or labels from overlapping boxes.
 
-## Validation scope
+The retained Nangate45/OpenROAD validation reports 24.87% held-out area MAPE; the experimental MST + segment-union routing proxy improves mean Pearson congestion correlation from 0.430 to 0.737. These results validate a narrow proxy task and must not be interpreted as signoff accuracy across advanced process nodes.
 
-Deployment tests check software loading, UI controls and JSON export. They do not establish physical accuracy. Architecture comparison is a heuristic; previous Nangate45 results must not be presented as validation of every process node or of the new topology builder.
+## Pages build
 
-Author: Liangdacheng with GPT5.5. The original repository LICENSE is retained. This repair does not relicense third-party material or publish an arXiv submission.
+GitHub Pages reconstructs the v8.6 source release, applies the v8.6.1 retirement patch, removes the Drive UI, verifies release markers, and publishes a full standalone planner. The workflow also compiles `paper/v8.6.1/main.tex` and exposes the PDF as `/paper.pdf`.
+
+Author: Liangdacheng with GPT5.5. MIT License. The paper is a preprint; publishing it here does not constitute an arXiv submission.
