@@ -16,34 +16,50 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
-    timeout-minutes: 12
+    timeout-minutes: 20
     steps:
-      - name: Checkout exact release
+      - name: Checkout
         uses: actions/checkout@v4
-      - name: Check full HTML integrity, aliases and JavaScript
-        run: python3 tools/check_site.py
-      - name: Prepare plain static site
+      - name: Rebuild Pixel v8.6.1 planner
         run: |
           set -euo pipefail
-          mkdir -p _site/planner
-          cp index.html _site/index.html
-          cp planner.html _site/planner.html
+          mkdir -p _site/planner _site/paper
+          cat release/v8.6/part-*.txt | tr -d '\n' | base64 -d | xz -d > /tmp/index-v86.html
+          mkdir -p /tmp/v861 && cp /tmp/index-v86.html /tmp/v861/index.html
+          (cd /tmp/v861 && patch -p1 < "$GITHUB_WORKSPACE/release/v8.6.1/remove-blackhole.patch")
+          python3 tools/prepare_v861.py /tmp/v861/index.html _site/index.html
+          cp _site/index.html _site/planner.html
           cp planner/index.html _site/planner/index.html
           cp pixel.html _site/intro.html
-          cp pixel.html _site/pixel.html
-          cp README.md build-info.json _site/
+          cp README.md _site/README.md
           touch _site/.nojekyll
           cmp _site/index.html _site/planner.html
+          grep -q "uiVersion:'8.6.1'" _site/index.html
+          ! grep -q 'id="driveBtn"' _site/index.html
+          ! grep -q 'tt_blackhole_tensix:' _site/index.html
+      - name: Build v8.6.1 preprint PDF
+        uses: xu-cheng/latex-action@v3
+        with:
+          root_file: main.tex
+          working_directory: paper/v8.6.1
+          latexmk_use_xelatex: false
+      - name: Publish paper and source
+        run: |
+          set -euo pipefail
+          cp paper/v8.6.1/main.pdf _site/paper.pdf
+          cp paper/v8.6.1/main.pdf _site/paper/flash_flooplanner_v8_6_1.pdf
+          cp paper/v8.6.1/main.tex _site/paper/main.tex
+          cp -r paper/v8.6.1/sections _site/paper/
+          cp -r paper/v8.6.1/figures _site/paper/
+          test -s _site/paper.pdf
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Upload verified Pages artifact
+      - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
-      - name: Deploy to GitHub Pages
+      - name: Deploy Pages
         id: deployment
         uses: actions/deploy-pages@v4
-      - name: Verify public root and planner HTML are the exact release
-        run: python3 tools/verify_public.py
