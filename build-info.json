@@ -1,11 +1,11 @@
 {
-  "version": "8.3.0",
-  "planner_bytes": 554063,
-  "planner_sha256": "65a187941021feef7c81970b63915317e7be9192630205d8fe1511e110fa52c7",
-  "entrypoints": [
-    "/",
-    "planner.html",
-    "planner/"
-  ],
-  "source": "Recovered exact frozen v8.3 HTML; production serves plain static files"
+  "product": "Flash-flooplanner Pixel Edition",
+  "version": "8.6.1",
+  "release_date": "2026-09-12",
+  "website": "https://ldcyes.github.io/Flash-floorplan/",
+  "paper": "https://ldcyes.github.io/Flash-floorplan/paper.pdf",
+  "release_method": "rebuild v8.6 fragments + v8.6.1 patches",
+  "drive_ui": false,
+  "tenstorrent_templates": ["RISC-V Ocelot"],
+  "retired_templates": ["Wormhole", "Blackhole"]
 }
