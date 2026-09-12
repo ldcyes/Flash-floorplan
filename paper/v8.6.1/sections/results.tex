@@ -1,0 +1,23 @@
+\section{Results}
+Table~\ref{tab:results} summarizes the held-out study. The calibrated structural area model achieves 24.87\% overall MAPE across 12 held-out designs. Family-level errors remain large enough that the model should be treated as an early budget, not a synthesis replacement.
+
+\begin{table}[h]
+\centering
+\caption{Held-out validation summary.}
+\label{tab:results}
+\begin{tabular}{lrr}
+\toprule
+Metric & Original v6 & Improved adapter \\
+\midrule
+Area MAPE (12 tests) & \multicolumn{2}{c}{24.87\%} \\
+Mean Pearson $r$ & 0.430 & 0.737 \\
+Mean Spearman $\rho$ & 0.625 & 0.769 \\
+Pooled hotspot F1 & 0.808 & 0.818 \\
+Median predictor time & 3.01 ms & 9.35 ms \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The most important change is correlation, not F1. Under severely constrained routing, hotspot prevalence becomes so high that an all-positive classifier is competitive, making F1 alone misleading. The improved adapter better matches where demand concentrates while remaining several orders of magnitude lighter than a new physical-design run once placed geometry is available.
+
+The benchmark also motivates current product behavior. Congestion is presented as a risk score with a Heuristic evidence label rather than a falsely precise signoff metric. Wide-net allocation across multiple H/V layers is accounted for as resource sharing rather than visual line thinning. Architecture comparisons expose wirelength, peak pressure, overflow cells, fabric area, estimated latency, and power side by side; the tool does not force the hierarchical candidate to win.
