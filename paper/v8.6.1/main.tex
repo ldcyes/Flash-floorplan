@@ -1,0 +1,22 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=0.72in,columnsep=0.22in]{geometry}
+\usepackage{amsmath,booktabs,graphicx,microtype,xcolor,tikz,hyperref}
+\usetikzlibrary{arrows.meta,positioning,fit,calc}
+\hypersetup{colorlinks=true,linkcolor=blue!55!black,urlcolor=blue!60!black,citecolor=blue!55!black}
+\title{Flash-flooplanner: A Metal-Aware and Process-Scalable Floorplanning Framework for Early-Stage IC Architecture Exploration}
+\author{Liangdacheng \and GPT5.5-assisted development}
+\date{Pixel Edition v8.6.1 -- Preprint}
+\begin{document}
+\maketitle
+\begin{abstract}
+Flash-flooplanner is an interactive early-stage IC floorplanning environment that connects architecture choices to process scaling, placement, metal-aware interconnect pressure, manufacturing yield, and cost. Version 8.6.1 adds first-class connection management with edge-anchored orthogonal buses, per-net horizontal/vertical metal-layer allocation, keyboard-oriented editing, and a CPU reference library spanning Arm Cortex, BOOM, XiangShan, NVIDIA Vera Olympus, and Tenstorrent Ocelot. The tool distinguishes measured, calibrated, estimated, and heuristic evidence. A held-out Nangate45/OpenROAD study reports 24.87\% area MAPE and demonstrates that an MST-plus-segment-union routing proxy raises mean Pearson congestion correlation from 0.430 to 0.737 relative to the original star adapter. These results validate a narrow proxy task rather than signoff accuracy across advanced nodes. The artifact is a client-side Pixel UI intended for rapid architecture exploration, not replacement of synthesis, STA, or detailed routing.
+\end{abstract}
+\input{sections/introduction}
+\input{sections/framework}
+\input{sections/editing}
+\input{sections/validation}
+\input{sections/results}
+\input{sections/limitations}
+\section*{Artifact}
+Source and the interactive planner are available at \url{https://github.com/ldcyes/Flash-floorplan} and \url{https://ldcyes.github.io/Flash-floorplan/}. The planner is MIT licensed. This document is a preprint and is not an arXiv submission record.
+\end{document}
