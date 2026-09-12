@@ -2,6 +2,14 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
+    paths:
+      - index.html
+      - planner.html
+      - planner/index.html
+      - pixel.html
+      - paper/**
+      - README.md
+      - build-info.json
   workflow_dispatch:
 permissions:
   contents: read
@@ -18,45 +26,48 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 20
     steps:
-      - name: Checkout
+      - name: Checkout exact release
         uses: actions/checkout@v4
-      - name: Rebuild Pixel v8.6.1 planner
+      - name: Verify direct v8.6.1 HTML
         run: |
           set -euo pipefail
-          mkdir -p _site/planner _site/paper
-          cat release/v8.6/part-*.txt | tr -d '\n' | base64 -d | xz -d > /tmp/index-v86.html
-          mkdir -p /tmp/v861 && cp /tmp/index-v86.html /tmp/v861/index.html
-          (cd /tmp/v861 && patch -p1 < "$GITHUB_WORKSPACE/release/v8.6.1/remove-blackhole.patch")
-          python3 tools/prepare_v861.py /tmp/v861/index.html _site/index.html
-          cp _site/index.html _site/planner.html
-          cp planner/index.html _site/planner/index.html
-          cp pixel.html _site/intro.html
-          cp README.md _site/README.md
-          touch _site/.nojekyll
-          cmp _site/index.html _site/planner.html
-          grep -q "uiVersion:'8.6.1'" _site/index.html
-          ! grep -q 'id="driveBtn"' _site/index.html
-          ! grep -q 'tt_blackhole_tensix:' _site/index.html
+          test -s index.html
+          cmp index.html planner.html
+          test "$(wc -c < index.html)" -eq 644079
+          echo "9375410a2d29434c61a7abf96ac4d7ddf90cb2dcf8347f179bd17dd315e07783  index.html" | sha256sum -c -
+          grep -q "uiVersion:'8.6.1'" index.html
+          grep -q 'FlashCPU86' index.html
+          ! grep -q 'id="driveBtn"' index.html
+          ! grep -q 'tt_blackhole_tensix:' index.html
+          ! grep -q 'tt_blackhole_p150:' index.html
+          ! grep -q 'tt_wormhole_tensix:' index.html
+          ! grep -q 'tt_wormhole_n150:' index.html
       - name: Build v8.6.1 preprint PDF
         uses: xu-cheng/latex-action@v3
         with:
           root_file: main.tex
           working_directory: paper/v8.6.1
           latexmk_use_xelatex: false
-      - name: Publish paper and source
+      - name: Prepare plain static site
         run: |
           set -euo pipefail
+          mkdir -p _site/planner _site/paper
+          cp index.html _site/index.html
+          cp planner.html _site/planner.html
+          cp planner/index.html _site/planner/index.html
+          cp pixel.html _site/intro.html
+          cp README.md build-info.json _site/
           cp paper/v8.6.1/main.pdf _site/paper.pdf
           cp paper/v8.6.1/main.pdf _site/paper/flash_flooplanner_v8_6_1.pdf
           cp paper/v8.6.1/main.tex _site/paper/main.tex
           cp -r paper/v8.6.1/sections _site/paper/
           cp -r paper/v8.6.1/figures _site/paper/
-          test -s _site/paper.pdf
+          touch _site/.nojekyll
       - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
-      - name: Upload Pages artifact
+      - name: Upload verified Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: _site
