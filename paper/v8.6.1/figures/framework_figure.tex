@@ -1,0 +1,38 @@
+\resizebox{\textwidth}{!}{%
+\begin{tikzpicture}[font=\sffamily,>=Latex,node distance=0pt]
+\tikzset{col/.style={rounded corners=3pt,minimum width=4.05cm,minimum height=7.1cm,align=left,anchor=north west,inner sep=6pt}, item/.style={rounded corners=2pt,minimum width=3.62cm,minimum height=.62cm,align=left,anchor=north west,inner sep=5pt,font=\footnotesize}, title/.style={font=\bfseries\large,anchor=north west}, flow/.style={-Latex,line width=1.4pt,draw=blue!65!black}}
+\node[col,fill=blue!5,draw=blue!45] (in) at (0,0) {};
+\node[title] at ($(in.north west)+(0.18,-0.18)$) {Design Inputs};
+\foreach \y/\t in {0.95/{Die size / aspect ratio},1.80/{Foundry / process target},2.65/{Module templates},3.50/{Interconnect / signal counts},4.35/{User constraints}}{\node[item,fill=white,draw=blue!35] at ($(in.north west)+(0.2,-\y)$) {\t};}
+\node[col,fill=cyan!5,draw=cyan!55!black] (arch) at (4.55,0) {};
+\node[title] at ($(arch.north west)+(0.18,-0.18)$) {Architecture Model};
+\foreach \y/\t in {0.95/{Compute core / cluster},1.67/{CPU reference templates},2.39/{SRAM / cache},3.11/{Router / Crossbar / Bene\v{s}},3.83/{PHY / IO blocks},4.55/{Modules + first-class nets},5.27/{Connection manager + ports}}{\node[item,fill=white,draw=cyan!45!black] at ($(arch.north west)+(0.2,-\y)$) {\t};}
+\node[font=\scriptsize,align=center,draw=cyan!45!black,dashed,fill=white] at ($(arch.south)+(0,0.55)$) {Measured / Calibrated / Estimated / Heuristic};
+\node[col,fill=green!6,draw=green!50!black] (tech) at (9.10,0) {};
+\node[title] at ($(tech.north west)+(0.18,-0.18)$) {Technology Model};
+\foreach \y/\t in {0.95/{Logic scaling},1.75/{SRAM scaling},2.55/{Foundry naming map},3.35/{Metal-stack abstraction},4.15/{Frequency / power scaling},4.95/{Yield / wafer assumptions}}{\node[item,fill=white,draw=green!45!black] at ($(tech.north west)+(0.2,-\y)$) {\t};}
+\node[font=\scriptsize,align=center,draw=green!45!black,dashed,fill=white] at ($(tech.south)+(0,0.55)$) {TSMC / Samsung / Intel / GF / SMIC / Huawei Tao};
+\node[col,fill=orange!8,draw=orange!65!black] (phys) at (13.65,0) {};
+\node[title] at ($(phys.north west)+(0.18,-0.18)$) {Physical Model};
+\foreach \y/\t in {0.95/{Placement + sizing},1.67/{Auto partition},2.39/{Hierarchical fabric builder},3.11/{Edge-anchored orthogonal buses},3.83/{Per-net H/V metal allocation},4.55/{Congestion heatmap},5.27/{90\textdegree{} rotate + Place-wire}}{\node[item,fill=white,draw=orange!60!black] at ($(phys.north west)+(0.2,-\y)$) {\t};}
+\node[col,fill=red!5,draw=red!45] (econ) at (18.20,0) {};
+\node[title] at ($(econ.north west)+(0.18,-0.18)$) {Economics + Outputs};
+\foreach \y/\t in {0.95/{Gross / good dies per wafer},1.75/{Stack yield},2.55/{Die / package / bond cost},3.35/{Good-unit cost},4.30/{Interactive Pixel planner},5.10/{Architecture comparison},5.90/{JSON / SVG / poster export}}{\node[item,fill=white,draw=red!35] at ($(econ.north west)+(0.2,-\y)$) {\t};}
+% Main signals stay inside dedicated gutters.
+\draw[flow] ($(in.east)+(0,0)$) -- ($(arch.west)+(0,0)$);
+\draw[flow] ($(arch.east)+(0,0)$) -- ($(tech.west)+(0,0)$);
+\draw[flow] ($(tech.east)+(0,0)$) -- ($(phys.west)+(0,0)$);
+\draw[flow] ($(phys.east)+(0,0)$) -- ($(econ.west)+(0,0)$);
+% Validation lane is separated below all main boxes.
+\node[rounded corners=3pt,draw=violet!50!black,fill=violet!5,minimum width=22.25cm,minimum height=2.10cm,anchor=north west] (val) at (0,-7.60) {};
+\node[font=\bfseries\large,anchor=north west] at ($(val.north west)+(0.18,-0.16)$) {Benchmark Validation};
+\foreach \x/\t in {0.35/{RTL\\generators},3.00/{Simulation},5.35/{Yosys\\synthesis},8.05/{OpenROAD\\placement},11.10/{Global\\route},13.55/{Metric\\extraction},16.40/{Area MAPE},18.85/{Congestion $r$},21.10/{F1 / runtime}}{\node[rounded corners=2pt,draw=violet!45!black,fill=white,minimum width=1.95cm,minimum height=.72cm,align=center,font=\scriptsize,anchor=north west] at ($(val.north west)+(\x,-0.86)$) {\t};}
+\foreach \a/\b in {2.30/2.88,4.95/5.23,7.30/7.93,10.00/10.98,13.05/13.43,15.50/16.28,18.35/18.73,20.80/20.98}{\draw[flow] ($(val.north west)+(\a,-1.22)$) -- ($(val.north west)+(\b,-1.22)$);}
+% Feedback arrows use their own lane and label boxes.
+\draw[flow] ($(val.north west)+(14.55,0)$) -- ++(0,0.38) -| ($(phys.south)+(0,-0.12)$);
+\node[font=\scriptsize,fill=white,inner sep=2pt] at (14.55,-7.34) {parameter tuning};
+\draw[flow] ($(val.north west)+(10.0,0)$) -- ++(0,0.62) -| ($(tech.south)+(0,-0.12)$);
+\node[font=\scriptsize,fill=white,inner sep=2pt] at (10.0,-7.10) {model validation};
+\draw[flow] ($(val.north west)+(6.1,0)$) -- ++(0,0.86) -| ($(arch.south)+(0,-0.12)$);
+\node[font=\scriptsize,fill=white,inner sep=2pt] at (6.1,-6.86) {calibration};
+\end{tikzpicture}}
