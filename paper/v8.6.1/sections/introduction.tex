@@ -1,0 +1,8 @@
+\section{Motivation}
+Architecture decisions are often made before a complete RTL implementation, hard macros, timing constraints, or a stable package definition exist. At that stage, architects still need to answer questions that are fundamentally physical: whether the target die can contain the planned compute and memory blocks; whether PHY placement consumes critical edge length; whether a wide fabric produces local metal pressure; whether a hierarchical topology trades wirelength for switch area and latency; and whether a nominally denser process actually improves good-unit economics.
+
+Conventional spreadsheets are fast but lose geometry and connectivity. Full place-and-route is physically grounded but requires implementation collateral that does not exist early enough. Flash-flooplanner targets the gap. Its design goal is not signoff prediction; it is a transparent, interactive model whose assumptions remain visible and calibratable.
+
+Version 8.6.1 extends this goal in three ways. First, nets are persistent design objects rather than decorative lines. Second, wide buses are attached to explicit module edges and can consume multiple horizontal and vertical metal layers. Third, reusable CPU reference templates are separated into core logic, private cache, and shared-cache budgets so that process scaling does not silently double-count SRAM.
+
+The user-facing interface adopts an industrial pixel style, but the underlying model is deliberately separated from presentation. The same project state can be exported as JSON, SVG, Draw.io, a poster, or a paper-oriented figure.
